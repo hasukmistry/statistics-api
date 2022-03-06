@@ -1,0 +1,56 @@
+---
+version: '3.7'
+
+volumes:
+    db_data:
+
+networks:
+    app-network:
+        driver: bridge
+
+services:
+    db:
+        image: mariadb:10.6.2
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: 'foobar'
+        ports:
+            - "20206:3306"
+        volumes:
+            - db_data:/var/lib/mysql
+        command: [ "mysqld", "--max-allowed-packet=536870912", "--default-authentication-plugin=mysql_native_password" ]
+        networks:
+            - app-network
+
+    phpmyadmin:
+        image: phpmyadmin
+        restart: always
+        ports:
+            - "8080:80"
+        environment:
+            - PMA_ARBITRARY=1
+            - UPLOAD_LIMIT=100M
+        depends_on:
+            - db
+        links:
+            - db
+        networks:
+            - app-network
+
+    app:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        environment:
+            - XDEBUG_MODE=debug
+            - XDEBUG_CONFIG=client_host=host.docker.internal
+        ports:
+            - "8000:8000"
+        volumes:
+            - ./app:/var/www/app
+        depends_on:
+            - db
+        links:
+            - db
+        networks:
+            - app-network
