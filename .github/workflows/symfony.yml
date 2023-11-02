@@ -47,7 +47,7 @@ jobs:
     - name: Run Migrations
       working-directory: ./app
       run: |
-        php artisan config:clear
+        php bin/console cache:pool:clear --all
         composer app.preparation.test
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
