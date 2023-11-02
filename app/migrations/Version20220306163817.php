@@ -20,8 +20,8 @@ final class Version20220306163817 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE hotel (id INT PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL)');
-        $this->addSql('CREATE TABLE review (id INT PRIMARY KEY AUTOINCREMENT, hotel_id INT NOT NULL, score DOUBLE PRECISION NOT NULL, comment VARCHAR(255) DEFAULT NULL, created_date DATETIME NOT NULL, FOREIGN KEY (hotel_id) REFERENCES hotel (id))');
+        $this->addSql('CREATE TABLE hotel (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL)');
+        $this->addSql('CREATE TABLE review (id INTEGER PRIMARY KEY AUTOINCREMENT, hotel_id INTEGER NOT NULL, score REAL NOT NULL, comment TEXT, created_date DATETIME NOT NULL, FOREIGN KEY (hotel_id) REFERENCES hotel (id))');
     }
 
     public function down(Schema $schema): void
