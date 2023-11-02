@@ -54,8 +54,13 @@ jobs:
       env:
         DATABASE_URL: "sqlite:///%kernel.project_dir%/data/database.sqlite"
       working-directory: ./app
-      run: vendor/bin/phpunit
+      run: vendor/bin/phpunit --coverage-clover coverage.xml
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      with:
+        file: ./app/coverage.xml,!./cache
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: true

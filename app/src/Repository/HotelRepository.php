@@ -62,7 +62,7 @@ class HotelRepository extends ServiceEntityRepository
         $overtime->setAverageScore(round($averageScore, 2));
         $overtime->setDateGroup($dateRange);
 
-        $encoders = [new JsonEncoder()];
+        $encoders    = [new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
 
         $serializer = new Serializer($normalizers, $encoders);
