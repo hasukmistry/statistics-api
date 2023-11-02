@@ -32,6 +32,16 @@ class AppFixtures extends Fixture
             $manager->persist($hotel);
         }
 
+        // generate 10 more hotels randomly.
+        for($i=0; $i<10; $i++) {
+            $hotel = (new Hotel())
+                ->setName(
+                    sprintf('%s Five Starts Hotel', $faker->company())
+                );
+
+            $manager->persist($hotel);
+        }
+
         $manager->flush();
 
         $this->loadReviews($manager, $faker);
