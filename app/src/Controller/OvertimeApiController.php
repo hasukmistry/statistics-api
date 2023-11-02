@@ -14,11 +14,7 @@ class OvertimeApiController extends AbstractController
     public function index(EntityManagerInterface $em, Hotel $hotel, int $dateRange): Response
     {
         return $this->json(
-            $this->getOverTimeFromRepository($em, $hotel, $dateRange)
+            $em->getRepository(Hotel::class)->getOverTime($hotel, $dateRange)
         );
-    }
-
-    protected function getOverTimeFromRepository(EntityManagerInterface $em, Hotel $hotel, int $dateRange) {
-        $em->getRepository(Hotel::class)->getOverTime($hotel, $dateRange)
     }
 }
