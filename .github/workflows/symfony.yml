@@ -39,19 +39,19 @@ jobs:
     - name: Install Dependencies
       working-directory: ./app
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-    - name: Create Database
-      working-directory: ./app
-      run: |
-        mkdir -p data
-        touch data/database.sqlite
+    # - name: Create Database
+    #   working-directory: ./app
+    #   run: |
+    #     mkdir -p data
+    #     touch data/database.sqlite
     - name: Run Migrations
       env:
-        DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
+        DATABASE_URL: "sqlite:///:memory:"
       working-directory: ./app
       run: |
         composer app.preparation.test
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
-        DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
+        DATABASE_URL: "sqlite:///:memory:"
       working-directory: ./app
       run: vendor/bin/phpunit
