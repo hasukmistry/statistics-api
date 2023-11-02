@@ -81,7 +81,6 @@
             "php bin/console c:c --no-warmup"
         ],
         "app.preparation.test": [
-            "php bin/console doctrine:database:drop --if-exists --force --env=test",
             "@db-preparation --env=test",
             "php bin/console c:c --no-warmup --env=test"
         ],
