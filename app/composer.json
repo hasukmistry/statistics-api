@@ -72,7 +72,6 @@
             "@app.preparation"
         ],
         "db-preparation": [
-            "php bin/console doctrine:database:create -q --if-not-exists",
             "php bin/console doctrine:migrations:migrate -q --allow-no-migration --no-interaction",
             "php bin/console doctrine:schema:validate"
         ],
