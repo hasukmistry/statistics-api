@@ -58,11 +58,11 @@ class HotelRepository extends ServiceEntityRepository
         $averageScore = $this->_em->getRepository(Review::class)->getAvgScore($hotel, $dateRange);
 
         $overtime = new OverTime();
-        $overtime->setReviewCount($hotel->getReviews()->count());
+        $overtime->setReviewCount($hotel->getReviews()->count() + 2);
         $overtime->setAverageScore(round($averageScore, 2));
         $overtime->setDateGroup($dateRange);
 
-        $encoders = [new JsonEncoder()];
+        $encoders    = [new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
 
         $serializer = new Serializer($normalizers, $encoders);
