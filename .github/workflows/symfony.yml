@@ -55,3 +55,7 @@ jobs:
         DATABASE_URL: "sqlite:///%kernel.project_dir%/data/database.sqlite"
       working-directory: ./app
       run: vendor/bin/phpunit
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v3
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
