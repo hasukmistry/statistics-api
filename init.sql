@@ -1,3 +1,8 @@
+CREATE DATABASE IF NOT EXISTS `app_db_test`;
+
+GRANT ALL PRIVILEGES ON app_db_test.* TO 'root'@'%';
+FLUSH PRIVILEGES;
+
 CREATE DATABASE IF NOT EXISTS `app_db`;
 
 USE `app_db`;
