@@ -67,10 +67,17 @@ RUN apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/*
 RUN curl -fsSL https://deb.nodesource.com/setup_17.x | bash -
 RUN apt-get install -y nodejs
 
+# Install npm separately
+RUN apt-get install -y npm
+
 # install global packages
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-ENV PATH $PATH:/home/node/.npm-global/bin:/app/node_modules/.bin/
+ENV PATH $PATH:/home/node/.npm-global/bin:/app/node_modules/.bin:/usr/bin/
 ENV NODE_OPTIONS=--openssl-legacy-provider
+
+# Check Node.js and npm installation
+RUN node -v && npm -v
+
 RUN npm i -g npm@latest yarn@latest
 
 # Add configuration files

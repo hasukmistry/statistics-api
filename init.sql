@@ -1,0 +1,6 @@
+CREATE DATABASE IF NOT EXISTS `app_db`;
+
+USE `app_db`;
+
+GRANT ALL PRIVILEGES ON app_db.* TO 'root'@'%';
+FLUSH PRIVILEGES;
