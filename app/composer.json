@@ -24,9 +24,9 @@
         "symfony/phpunit-bridge": "^6.0",
         "symfony/property-access": "6.0.*",
         "symfony/proxy-manager-bridge": "6.0.*",
-        "symfony/runtime": "6.0.*",
+        "symfony/runtime": "6.4.*",
         "symfony/serializer": "6.0.*",
-        "symfony/yaml": "6.0.*"
+        "symfony/yaml": "6.4.*"
     },
     "config": {
         "allow-plugins": {
